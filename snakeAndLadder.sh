@@ -1,3 +1,5 @@
 #!/bin/bash -x
-printf "Welcome to snake and ladder game\n"
-
+printf "Start at position 0 with single player\n"
+#VARIABLES
+numberOfPlayers=1
+position=0
