@@ -1,5 +1,6 @@
 #!/bin/bash -x
-printf "Start at position 0 with single player\n"
+printf "Roll the die to generate 1 to 6 \n"
 #VARIABLES
 numberOfPlayers=1
 position=0
+rollTheDie=$((RANDOM%6+1))
