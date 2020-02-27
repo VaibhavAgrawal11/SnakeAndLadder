@@ -1,5 +1,5 @@
 #!/bin/bash -x
-printf "Added wining condition \n"
+printf "Added exact wining condition \n"
 #VARIABLES
 numberOfPlayers=1
 position=0
@@ -18,12 +18,18 @@ do
 		;;
 		1)
 		printf "Yeahh Ladder!!\n"
-		position=$((position+rollTheDie))
-		printf "$position"
+		if(( $((position+rollTheDie))>100))	#EXACT WIN CONDITION
+		then
+			position=$position
+			printf "$position"
+		else
+			position=$((position+rollTheDie))
+         printf "$position"
+		fi
 		;;
 		2)
 		printf "Opps snake..\n"
-		if(($position>$rollTheDie)) 
+		if(($position>$rollTheDie))	#EXACT RESTART AND SNAKE CONDITION
 		then
 			position=$((position-rollTheDie))
 		else
