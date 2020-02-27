@@ -1,30 +1,30 @@
 #!/bin/bash -x
-printf "Added exact wining condition \n"
+printf "Counting the die rolled and postion reached \n"
 #VARIABLES
 numberOfPlayers=1
 position=0
+dieCount=0
 
+declare -A diePosition
 #PLAY TILL 100
 while(($position<100))
 do
 	rollTheDie=$((RANDOM%6+1))
+	dieCount=$((dieCount+1))
 	optionCheck=$((RANDOM%3))
 	#CHECK OPTIONS NOPLAY/LADDER/SNAKE
 	case $optionCheck in
 		0)
 		printf "No play\n"
 		position=$position
-		printf "$position"
 		;;
 		1)
 		printf "Yeahh Ladder!!\n"
 		if(( $((position+rollTheDie))>100))	#EXACT WIN CONDITION
 		then
 			position=$position
-			printf "$position"
 		else
 			position=$((position+rollTheDie))
-         printf "$position"
 		fi
 		;;
 		2)
@@ -35,7 +35,9 @@ do
 		else
 			position=0
 		fi
-		printf "$position"
    	;;
 	esac
+	diePosition[$dieCount]="$position"
+	printf "Die count $dieCount : Position $position\n"
 done
+printf "Congratulations!! You Won!!\nYou roll the die for $dieCount times\n"
