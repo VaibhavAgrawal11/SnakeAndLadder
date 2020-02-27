@@ -3,7 +3,9 @@ printf "Counting the die rolled and postion reached \n"
 #VARIABLES
 numberOfPlayers=2
 position=0
+position2=0
 dieCount=0
+dieCount2=0
 NOPLAY=0
 LADDER=1
 SNAKE=2
@@ -42,11 +44,20 @@ function playGame()
 }
 
 #PLAY TILL 100
-while(($position<100))
+while(($position<100 && $position2<100))
 do
 	position="$(playGame $position)"
 	dieCount=$((dieCount+1))
-	printf "Die count $dieCount : Position $position\n"
-	diePosition[$dieCount]="$position"
+	printf "Player1 $dieCount : Position $position\n"
+	
+	position2="$(playGame $position2)"
+   dieCount2=$((dieCount2+1))
+   printf "Player2 $dieCount2 : Position $position\n"
+
 done
-printf "Congratulations!! You Won!!\nYou roll the die for $dieCount times\n"
+if((position==100))
+then
+	printf "Congratulations!! Player1 Won!!\nPlayer1 roll the die for $dieCount times\n"
+else
+	printf "Congratulations!! Player2 Won!!\nPlayer2 roll the die for $dieCount2 times\n"
+fi
